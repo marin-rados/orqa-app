@@ -65,7 +65,6 @@ const HomePage = () => {
                 "lastName",
                 "email",
                 "position",
-                "contactNumber",
               ] as (keyof EmployeeType)[];
               return search === ""
                 ? true
