@@ -35,22 +35,44 @@ const HomePage = () => {
 
   return (
     <div className="home">
-      <p>ja sam home stranica</p>
-      <div className="zaposlenici">
-        {data.map((employee) => {
-          return (
-            <div className="zaposlenik">
-              <img src={employee.imageUrl} alt={employee.firstName} />
-              <p>{employee.firstName}</p>
-              <p>{employee.lastName}</p>
-              <p>{employee.position}</p>
-              <p>{employee.email}</p>
-              <p>{employee.contactNumber}</p>
-              <p>{employee.id}</p>
-            </div>
-          );
-        })}
-      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Photo</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Job Title</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((employee, index) => {
+            return (
+              <tr>
+                <td>{index + 1}</td>
+                <td>
+                  <img
+                    src={employee.imageUrl}
+                    height={25}
+                    width={25}
+                    alt="Image of an employee"
+                  />
+                </td>
+                <td>{employee.firstName}</td>
+                <td>{employee.lastName}</td>
+                <td>{employee.email}</td>
+                <td>{employee.position}</td>
+                <td>
+                  <button>details</button>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+      ;
     </div>
   );
 };
