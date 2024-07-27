@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-type EmployeeType = {
+export type EmployeeType = {
   id: string;
   firstName: string;
   lastName: string;
@@ -12,6 +13,7 @@ type EmployeeType = {
 
 const HomePage = () => {
   const [data, setData] = useState<EmployeeType[]>([]);
+  const navigate = useNavigate();
 
   const getData = () => {
     fetch("http://localhost:3000/data")
@@ -65,7 +67,9 @@ const HomePage = () => {
                 <td>{employee.email}</td>
                 <td>{employee.position}</td>
                 <td>
-                  <button>details</button>
+                  <button onClick={() => navigate(`/employee/${employee.id}`)}>
+                    details
+                  </button>
                 </td>
               </tr>
             );
