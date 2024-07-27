@@ -13,6 +13,7 @@ export type EmployeeType = {
 
 const HomePage = () => {
   const [data, setData] = useState<EmployeeType[]>([]);
+  const [search, setSearch] = useState<string>("");
   const navigate = useNavigate();
 
   const getData = () => {
@@ -37,6 +38,13 @@ const HomePage = () => {
 
   return (
     <div className="home">
+      <input
+        type="text"
+        placeholder="Search for an employee..."
+        onChange={(e) => {
+          setSearch(e.target.value);
+        }}
+      />
       <table>
         <thead>
           <tr>
@@ -50,30 +58,45 @@ const HomePage = () => {
           </tr>
         </thead>
         <tbody>
-          {data.map((employee, index) => {
-            return (
-              <tr>
-                <td>{index + 1}</td>
-                <td>
-                  <img
-                    src={employee.imageUrl}
-                    height={25}
-                    width={25}
-                    alt="Image of an employee"
-                  />
-                </td>
-                <td>{employee.firstName}</td>
-                <td>{employee.lastName}</td>
-                <td>{employee.email}</td>
-                <td>{employee.position}</td>
-                <td>
-                  <button onClick={() => navigate(`/employee/${employee.id}`)}>
-                    details
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
+          {data
+            .filter((item: EmployeeType) => {
+              const keys = [
+                "firstName",
+                "lastName",
+                "email",
+                "position",
+                "contactNumber",
+              ] as (keyof EmployeeType)[];
+              return search === ""
+                ? true
+                : keys.some((key) => item[key].toLowerCase().includes(search));
+            })
+            .map((employee, index) => {
+              return (
+                <tr>
+                  <td>{index + 1}</td>
+                  <td>
+                    <img
+                      src={employee.imageUrl}
+                      height={25}
+                      width={25}
+                      alt="Image of an employee"
+                    />
+                  </td>
+                  <td>{employee.firstName}</td>
+                  <td>{employee.lastName}</td>
+                  <td>{employee.email}</td>
+                  <td>{employee.position}</td>
+                  <td>
+                    <button
+                      onClick={() => navigate(`/employee/${employee.id}`)}
+                    >
+                      details
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
         </tbody>
       </table>
       ;
