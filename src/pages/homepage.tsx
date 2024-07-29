@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import SearchInput from "../components/search-input";
 
 export type EmployeeType = {
   id: string;
@@ -38,13 +39,7 @@ const HomePage = () => {
 
   return (
     <div className="home">
-      <input
-        type="text"
-        placeholder="Search for an employee..."
-        onChange={(e) => {
-          setSearch(e.target.value);
-        }}
-      />
+      <SearchInput setSearch={setSearch} />
       <table>
         <thead>
           <tr>
@@ -60,12 +55,7 @@ const HomePage = () => {
         <tbody>
           {data
             .filter((item: EmployeeType) => {
-              const keys = [
-                "firstName",
-                "lastName",
-                "email",
-                "position",
-              ] as (keyof EmployeeType)[];
+              const keys = ["firstName", "lastName"] as (keyof EmployeeType)[];
               return search === ""
                 ? true
                 : keys.some((key) => item[key].toLowerCase().includes(search));
