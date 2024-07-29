@@ -18,6 +18,7 @@ const EmployeeDetails = () => {
 
   return (
     <div className="employee">
+      <img src={details?.imageUrl} alt="" />
       {details?.firstName}
       {details?.lastName}
       {details?.id}
