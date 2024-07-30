@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SearchInput from "../components/search-input";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInView } from "react-intersection-observer";
 
 export type EmployeeType = {
   id: string;
@@ -13,29 +15,45 @@ export type EmployeeType = {
 };
 
 const HomePage = () => {
-  const [data, setData] = useState<EmployeeType[]>([]);
   const [search, setSearch] = useState<string>("");
   const navigate = useNavigate();
 
-  const getData = () => {
-    fetch("http://localhost:3000/data")
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        console.log(res);
-      })
-      .then((data) => {
-        setData(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const fetchEmployees = async ({ pageParam = 0 }) => {
+    const limit = pageParam === 0 ? 9 : 1;
+
+    // Calculate the start parameter
+    const start = pageParam === 0 ? 0 : pageParam;
+
+    // Adding a 100-millisecond delay before fetching data
+    await new Promise((resolve) => setTimeout(resolve, 100));
+
+    const response = await fetch(
+      `http://localhost:3000/data?_start=${start}&_limit=${limit}`
+    );
+    const data = await response.json();
+    return {
+      data,
+      nextPage: data.length > 0 ? start + data.length : null,
+    };
   };
 
+  // React Query setup for infinite scroll
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useInfiniteQuery({
+      queryKey: ["employees"],
+      queryFn: fetchEmployees,
+      initialPageParam: 0,
+      getNextPageParam: (lastPage) => lastPage.nextPage,
+    });
+
+  // Intersection observer setup
+  const { ref, inView } = useInView();
+
   useEffect(() => {
-    getData();
-  }, []);
+    if (inView && hasNextPage) {
+      fetchNextPage();
+    }
+  }, [inView, hasNextPage, fetchNextPage]);
 
   return (
     <div className="home">
@@ -53,42 +71,52 @@ const HomePage = () => {
           </tr>
         </thead>
         <tbody>
-          {data
-            .filter((item: EmployeeType) => {
-              const keys = ["firstName", "lastName"] as (keyof EmployeeType)[];
-              return search === ""
-                ? true
-                : keys.some((key) => item[key].toLowerCase().includes(search));
-            })
-            .map((employee, index) => {
-              return (
-                <tr>
-                  <td>{index + 1}</td>
-                  <td>
-                    <img
-                      src={employee.imageUrl}
-                      height={25}
-                      width={25}
-                      alt="Image of an employee"
-                    />
-                  </td>
-                  <td>{employee.firstName}</td>
-                  <td>{employee.lastName}</td>
-                  <td>{employee.email}</td>
-                  <td>{employee.position}</td>
-                  <td>
-                    <button
-                      onClick={() => navigate(`/employee/${employee.id}`)}
-                    >
-                      details
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
+          {data?.pages.map((page, pageIndex) => (
+            <>
+              {page.data
+                .filter((item: EmployeeType) => {
+                  const keys = [
+                    "firstName",
+                    "lastName",
+                  ] as (keyof EmployeeType)[];
+                  return search === ""
+                    ? true
+                    : keys.some((key) =>
+                        item[key].toLowerCase().includes(search)
+                      );
+                })
+                .map((employee: EmployeeType) => (
+                  <tr key={employee.id}>
+                    <td>{employee.id}</td>
+                    <td>
+                      <img
+                        src={employee.imageUrl}
+                        height={100}
+                        width={100}
+                        alt="Image of an employee"
+                      />
+                    </td>
+                    <td>{employee.firstName}</td>
+                    <td>{employee.lastName}</td>
+                    <td>{employee.email}</td>
+                    <td>{employee.position}</td>
+                    <td>
+                      <button
+                        onClick={() => navigate(`/employee/${employee.id}`)}
+                      >
+                        details
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+            </>
+          ))}
         </tbody>
       </table>
-      ;
+      <div ref={ref} className="loading">
+        {isFetchingNextPage && <p>Loading more...</p>}
+        {!hasNextPage && <p>You have seen all employees</p>}
+      </div>
     </div>
   );
 };
