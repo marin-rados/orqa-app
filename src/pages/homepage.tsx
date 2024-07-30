@@ -1,21 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import SearchInput from "../components/search-input";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
-
-export type EmployeeType = {
-  id: string;
-  firstName: string;
-  lastName: string;
-  position: string;
-  imageUrl: string;
-  contactNumber: string;
-  email: string;
-};
+import { EmployeeType } from "../types/global";
+import { useSearchStore } from "../store/store";
 
 const HomePage = () => {
-  const [search, setSearch] = useState<string>("");
+  const { search } = useSearchStore();
   const navigate = useNavigate();
 
   const fetchEmployees = async ({ pageParam = 0 }) => {
@@ -24,8 +15,8 @@ const HomePage = () => {
     // Calculate the start parameter
     const start = pageParam === 0 ? 0 : pageParam;
 
-    // Adding a 100-millisecond delay before fetching data
-    await new Promise((resolve) => setTimeout(resolve, 100));
+    // Adding a 250-millisecond delay before fetching data so the infinite scroll effect is more noticeable
+    await new Promise((resolve) => setTimeout(resolve, 250));
 
     const response = await fetch(
       `http://localhost:3000/data?_start=${start}&_limit=${limit}`
@@ -57,7 +48,6 @@ const HomePage = () => {
 
   return (
     <div className="home">
-      <SearchInput setSearch={setSearch} />
       <table>
         <thead>
           <tr>
@@ -71,7 +61,7 @@ const HomePage = () => {
           </tr>
         </thead>
         <tbody>
-          {data?.pages.map((page, pageIndex) => (
+          {data?.pages.map((page) => (
             <>
               {page.data
                 .filter((item: EmployeeType) => {

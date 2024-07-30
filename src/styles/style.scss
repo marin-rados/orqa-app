@@ -1,7 +1,43 @@
+:root {
+  //COLORS
+  //grey
+  --color-grey-950: #0d121c;
+  --color-grey-900: #121926;
+  --color-grey-800: #202939;
+  --color-grey-700: #4a4d55;
+  --color-grey-600: #4b5565;
+  --color-grey-500: #697586;
+  --color-grey-400: #9aa3b2;
+  --color-grey-300: #cdd5df;
+  --color-grey-200: #e3e8ef;
+  --color-grey-100: #eef2f6;
+  --color-grey-50: #f8fafc;
+  --color-grey-25: #fcfcfd;
+  //blue
+  --color-blue-800: #0040c1;
+  --color-blue-600: #155eef;
+  --color-blue-500: #2970ff;
+  --color-blue-400: #528bff;
+
+  --color-dark-blue-500: #364152;
+  --color-dark-blue-400: #3d4149;
+  --color-dark-blue-200: #252a33;
+  //light blue
+  --color-light-blue-50: #eff4ff;
+
+  //BORDER SIZES
+  --border-circle: 50rem;
+  --border-round: 1.5rem;
+  --border-rounded: 1.25rem;
+  --border-sm: 1rem;
+  --border-xs: 0.5rem;
+}
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: "Inter", sans-serif;
 }
 
 //imports
@@ -9,3 +45,6 @@
 @import "./components/layout.scss";
 @import "./pages/diagram.scss";
 @import "./pages/homepage.scss";
+@import "./components/sidebar.scss";
+@import "./pages/content-layout.scss";
+@import "./components/search-input.scss";

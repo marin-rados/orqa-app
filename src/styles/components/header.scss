@@ -1,8 +1,9 @@
 .header {
   width: 100%;
   padding: 2rem 0rem;
-  border: 1px solid blue;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  border-bottom: 1px solid var(--color-grey-500);
+  background-color: var(--color-grey-950);
 }

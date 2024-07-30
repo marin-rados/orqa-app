@@ -1,12 +1,12 @@
-import { useNavigate } from "react-router-dom";
+import { useSearchStore } from "../store/store";
+import SearchInput from "./search-input";
 
 const Header = () => {
-  const navigate = useNavigate();
+  const { setSearch } = useSearchStore();
   return (
-    <nav className="header">
-      <li onClick={() => navigate("/")}>Imenik zaposlenika</li>
-      <li onClick={() => navigate("/dijagram")}>Organizacijski dijagram</li>
-    </nav>
+    <div className="header">
+      <SearchInput setSearch={setSearch} />
+    </div>
   );
 };
 
