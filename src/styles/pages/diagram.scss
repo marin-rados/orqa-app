@@ -1,5 +1,3 @@
-/* OrganizationChartDemo.css */
-
 .organizationchart-demo .card {
   overflow-x: auto;
 }
@@ -41,4 +39,15 @@
 .organizationchart-demo .p-organizationchart .department-cto {
   background-color: #e9286f;
   color: #ffffff;
+}
+
+.diagram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.p-organizationchart-line-down {
+  background: none;
 }

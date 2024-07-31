@@ -1,0 +1,47 @@
+.details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-grey-25);
+  padding: 5rem;
+}
+
+.introduction {
+  display: flex;
+  justify-content: space-evenly;
+  width: 50%;
+  border-radius: var(--border-sm);
+  overflow: hidden;
+  margin-bottom: 2rem;
+  &__img {
+    object-fit: cover;
+    object-position: center;
+    border-radius: var(--border-sm);
+  }
+  &__info {
+    padding: 0.5rem 0rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    &__name {
+      font-size: 2rem;
+    }
+    &__position {
+      font-size: 1.25rem;
+      color: var(--color-grey-400);
+    }
+  }
+}
+
+.info {
+  &__title {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    color: var(--color-grey-25);
+  }
+  width: 80%;
+  text-align: center;
+  font-size: 2rem;
+  color: var(--color-grey-300);
+}

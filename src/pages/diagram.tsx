@@ -1,13 +1,7 @@
-// const Diagram = () => {
-//   return (
-//     <div className="diagram">
-//       <p>ja sam dijagram stranica</p>
-//     </div>
-//   );
-// };
-
-// export default Diagram;
-
+import "primeicons/primeicons.css";
+import "primereact/resources/themes/lara-light-indigo/theme.css";
+import "primereact/resources/primereact.css";
+import "primeflex/primeflex.css";
 import { useState } from "react";
 import { OrganizationChart } from "primereact/organizationchart";
 
@@ -19,22 +13,14 @@ const Diagram = () => {
       type: "person",
       className: "p-person",
       expanded: true,
-      data: {
-        name: "Walter White",
-        avatar:
-          "https://images.pexels.com/photos/1586973/pexels-photo-1586973.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      },
+      data: { name: "Walter White", avatar: "walter.jpg" },
       children: [
         {
           label: "CFO",
           type: "person",
           className: "p-person",
           expanded: true,
-          data: {
-            name: "Saul Goodman",
-            avatar:
-              "https://images.pexels.com/photos/1586973/pexels-photo-1586973.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-          },
+          data: { name: "Saul Goodman", avatar: "saul.jpg" },
           children: [
             {
               label: "Tax",
@@ -51,11 +37,7 @@ const Diagram = () => {
           type: "person",
           className: "p-person",
           expanded: true,
-          data: {
-            name: "Mike E.",
-            avatar:
-              "https://images.pexels.com/photos/1586973/pexels-photo-1586973.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-          },
+          data: { name: "Mike E.", avatar: "mike.jpg" },
           children: [
             {
               label: "Operations",
@@ -68,11 +50,7 @@ const Diagram = () => {
           type: "person",
           className: "p-person",
           expanded: true,
-          data: {
-            name: "Jesse Pinkman",
-            avatar:
-              "https://images.pexels.com/photos/1586973/pexels-photo-1586973.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-          },
+          data: { name: "Jesse Pinkman", avatar: "jesse.jpg" },
           children: [
             {
               label: "Development",
@@ -165,20 +143,22 @@ const Diagram = () => {
   };
 
   return (
-    <div className="organizationchart-demo">
-      <div className="card">
-        <h5>Advanced</h5>
-        <OrganizationChart
-          value={data1}
-          nodeTemplate={nodeTemplate}
-          selection={selection}
-          selectionMode="multiple"
-          onSelectionChange={(event) => setSelection(event.data)}
-          className="company"
-        ></OrganizationChart>
+    <div className="diagram">
+      <div className="organizationchart-demo">
+        <div className="card">
+          <h5>Advanced</h5>
+          <OrganizationChart
+            value={data1}
+            nodeTemplate={nodeTemplate}
+            selection={selection}
+            selectionMode="multiple"
+            onSelectionChange={(event) => setSelection(event.data)}
+            className="company"
+          ></OrganizationChart>
 
-        <h5>Basic</h5>
-        <OrganizationChart value={data2}></OrganizationChart>
+          <h5>Basic</h5>
+          <OrganizationChart value={data2}></OrganizationChart>
+        </div>
       </div>
     </div>
   );

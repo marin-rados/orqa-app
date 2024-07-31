@@ -13,17 +13,9 @@
   --color-grey-100: #eef2f6;
   --color-grey-50: #f8fafc;
   --color-grey-25: #fcfcfd;
-  //blue
-  --color-blue-800: #0040c1;
-  --color-blue-600: #155eef;
-  --color-blue-500: #2970ff;
-  --color-blue-400: #528bff;
-
   --color-dark-blue-500: #364152;
   --color-dark-blue-400: #3d4149;
   --color-dark-blue-200: #252a33;
-  //light blue
-  --color-light-blue-50: #eff4ff;
 
   //BORDER SIZES
   --border-circle: 50rem;
@@ -48,3 +40,4 @@
 @import "./components/sidebar.scss";
 @import "./pages/content-layout.scss";
 @import "./components/search-input.scss";
+@import "./pages/employee-details.scss";

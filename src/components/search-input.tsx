@@ -1,7 +1,10 @@
 import searchIcon from "../assets/search-icon.svg";
-import { SearchStoreType } from "../types/global";
 
-const SearchInput = ({ setSearch }: SearchStoreType) => {
+type Props = {
+  setSearch: (lightMode: string) => void;
+};
+
+const SearchInput = ({ setSearch }: Props) => {
   return (
     <div className="search">
       <img className="search__icon" src={searchIcon} alt="Search Icon" />

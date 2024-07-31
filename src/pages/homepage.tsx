@@ -48,16 +48,16 @@ const HomePage = () => {
 
   return (
     <div className="home">
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Photo</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Job Title</th>
-            <th>Details</th>
+      <table className="employees">
+        <thead className="employees__header">
+          <tr className="employees__header__tags">
+            <th className="employees__header__tags__tag">#</th>
+            <th className="employees__header__tags__tag">Photo</th>
+            <th className="employees__header__tags__tag">First Name</th>
+            <th className="employees__header__tags__tag">Last Name</th>
+            <th className="employees__header__tags__tag">Email</th>
+            <th className="employees__header__tags__tag">Job Title</th>
+            <th className="employees__header__tags__tag">Details</th>
           </tr>
         </thead>
         <tbody>
@@ -76,25 +76,27 @@ const HomePage = () => {
                       );
                 })
                 .map((employee: EmployeeType) => (
-                  <tr key={employee.id}>
-                    <td>{employee.id}</td>
-                    <td>
+                  <tr key={employee.id} className="employee">
+                    <td className="employee__info">{employee.id}</td>
+                    <td className="employee__info">
                       <img
+                        className="employee__img"
                         src={employee.imageUrl}
                         height={100}
                         width={100}
                         alt="Image of an employee"
                       />
                     </td>
-                    <td>{employee.firstName}</td>
-                    <td>{employee.lastName}</td>
-                    <td>{employee.email}</td>
-                    <td>{employee.position}</td>
-                    <td>
+                    <td className="employee__info">{employee.firstName}</td>
+                    <td className="employee__info">{employee.lastName}</td>
+                    <td className="employee__info">{employee.email}</td>
+                    <td className="employee__info">{employee.position}</td>
+                    <td className="employee__info">
                       <button
+                        className="employee__details"
                         onClick={() => navigate(`/employee/${employee.id}`)}
                       >
-                        details
+                        Details
                       </button>
                     </td>
                   </tr>
