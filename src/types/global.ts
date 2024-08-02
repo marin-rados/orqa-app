@@ -15,13 +15,3 @@ export type SearchStoreType = {
   search: string;
   setSearch: (lightMode: string) => void;
 };
-
-export type EmployeeDiagramType = {
-  label: string;
-  type: string;
-  expanded: boolean;
-  data: string[];
-  name: string;
-  imageUrl: string;
-  children: string[];
-};

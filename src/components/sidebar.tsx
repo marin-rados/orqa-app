@@ -65,17 +65,3 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
-
-{
-  /* <div
-  className="navigation__item"
-  onClick={() => {
-    navigate(`/employees/diagram`);
-    setActiveItem("Home");
-  }}
-  key="Home"
->
-  <img className="navigation__item__icon" src={chartIcon} alt="Chart Icon" />
-  <p className={`navigation__item__label`}>Organization Chart</p>
-</div>; */
-}
