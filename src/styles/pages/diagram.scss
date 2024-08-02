@@ -1,46 +1,3 @@
-.organizationchart-demo .card {
-  overflow-x: auto;
-}
-
-.organizationchart-demo .p-organizationchart .p-person {
-  padding: 0;
-  border: 0 none;
-}
-
-.organizationchart-demo .p-organizationchart .node-header,
-.organizationchart-demo .p-organizationchart .node-content {
-  padding: 0.5em 0.7rem;
-}
-
-.organizationchart-demo .p-organizationchart .node-header {
-  background-color: #495ebb;
-  color: #ffffff;
-}
-
-.organizationchart-demo .p-organizationchart .node-content {
-  text-align: center;
-  border: 1px solid #495ebb;
-}
-
-.organizationchart-demo .p-organizationchart .node-content img {
-  border-radius: 50%;
-}
-
-.organizationchart-demo .p-organizationchart .department-cfo {
-  background-color: #7247bc;
-  color: #ffffff;
-}
-
-.organizationchart-demo .p-organizationchart .department-coo {
-  background-color: #a534b6;
-  color: #ffffff;
-}
-
-.organizationchart-demo .p-organizationchart .department-cto {
-  background-color: #e9286f;
-  color: #ffffff;
-}
-
 .diagram {
   display: flex;
   align-items: center;
@@ -49,5 +6,26 @@
 }
 
 .p-organizationchart-line-down {
-  background: none;
+  display: none;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 7rem;
+  background-color: var(--color-grey-700);
+  color: var(--color-grey-25);
+  overflow: hidden;
+  padding: 0.25rem;
+  font-size: 0.8rem;
+  &__content {
+    &__img {
+      height: 4rem;
+      width: 4rem;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
 }
