@@ -13,5 +13,5 @@ export type EmployeeType = {
 //store types
 export type SearchStoreType = {
   search: string;
-  setSearch: (lightMode: string) => void;
+  setSearch: (search: string) => void;
 };

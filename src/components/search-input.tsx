@@ -1,7 +1,7 @@
 import searchIcon from "../assets/search-icon.svg";
 
 type Props = {
-  setSearch: (lightMode: string) => void;
+  setSearch: (search: string) => void;
 };
 
 const SearchInput = ({ setSearch }: Props) => {
